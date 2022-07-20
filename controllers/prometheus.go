@@ -8,10 +8,11 @@ import (
 	"strconv"
 	"strings"
 	"time"
-	"fmt"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/logs"
 )
+import "fmt"
+
 
 type PrometheusController struct {
 	beego.Controller
