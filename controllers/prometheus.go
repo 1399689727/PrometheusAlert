@@ -229,7 +229,7 @@ func SendMessageR(message Prometheus, rwxurl, rddurl, rfsurl, rphone, remail, rg
 				}
 			}
 		}
-		fmt.Print("nLevel:" nLevel, "Feishulevel": Feishulevel)
+		fmt.Print("nLevel:" nLevel, " Feishulevel:", Feishulevel)
 		if nLevel >= Feishulevel {
 			//发送消息到飞书
 			if rfsurl == "" && RMessage.Annotations.Fsurl == "" {
