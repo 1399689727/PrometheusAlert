@@ -29,6 +29,7 @@ func PostToFS(title, text, Fsurl, userEmail, logsign string) string {
 	RTstring := ""
 	// 写死warning的信息不告警
 	if strings.Contains(text, "warning") {
+		logs.Info("warning not sent message:", text)
 		return RTstring
 	}
 	if strings.Contains(Fsurl, "/v2/") {
