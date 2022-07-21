@@ -427,6 +427,7 @@ func SendMessagePrometheusAlert(message string, pmsg *PrometheusAlertMsg, logsig
 	var ReturnMsg string
 	models.AlertsFromCounter.WithLabelValues("/prometheusalert").Add(1)
 	ChartsJson.Prometheusalert += 1
+    logs.Info("[message]:", message)
 	switch pmsg.Type {
 	//微信渠道
 	case "wx":
