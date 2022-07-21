@@ -163,6 +163,7 @@ func (c *PrometheusAlertController) PrometheusAlert() {
 		}
 	}
 	logs.Info("p_alertmanager_json:", p_alertmanager_json)
+
 	var message string
 	if pMsg.Type != "" && PrometheusAlertTpl != nil {
 		//判断是否是来自 Prometheus的告警
@@ -173,6 +174,8 @@ func (c *PrometheusAlertController) PrometheusAlert() {
 				GlobalAlertRouter, _ = models.GetAllAlertRouter()
 			}
 			Alerts_Value, _ := p_alertmanager_json["alerts"].([]interface{})
+			Labes_Value, _ := p_alertmanager_json["commonLabels"].(map[string]interface{})
+			logs.Info("Labes_Value:",Labes_Value)
 			//拆分告警消息
 			for _, AlertValue := range Alerts_Value {
 				p_alertmanager_json["alerts"] = Alerts_Value[0:0]
