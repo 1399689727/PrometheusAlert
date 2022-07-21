@@ -105,7 +105,7 @@ func SendMessageR(message Prometheus, rwxurl, rddurl, rfsurl, rphone, remail, rg
 	Logourl := beego.AppConfig.String("logourl")
 	Rlogourl := beego.AppConfig.String("rlogourl")
 	Messagelevel, _ := beego.AppConfig.Int("messagelevel")
-	Feishulevel, _ := beego.AppConfig.Int("feishulevel")
+// 	Feishulevel, _ := beego.AppConfig.Int("feishulevel")
 	PhoneCalllevel, _ := beego.AppConfig.Int("phonecalllevel")
 	PhoneCallResolved, _ := beego.AppConfig.Int("phonecallresolved")
 	PCstTime, _ := beego.AppConfig.Int("prometheus_cst_time")
@@ -230,37 +230,37 @@ func SendMessageR(message Prometheus, rwxurl, rddurl, rfsurl, rphone, remail, rg
 				}
 			}
 		}
-		logs.Info("nLevel:",nLevel," Feishulevel:", Feishulevel)
-		if nLevel >= Feishulevel {
+// 		logs.Info("nLevel:",nLevel," Feishulevel:", Feishulevel)
+// 		if nLevel >= Feishulevel {
 			//发送消息到飞书
-			if rfsurl == "" && RMessage.Annotations.Fsurl == "" {
-				url := beego.AppConfig.String("fsurl")
-				PostToFS(Title+titleend, fstext, url, RMessage.Annotations.AtSomeOne, logsign)
-			} else {
-				if rfsurl != "" {
-					Fsurl := strings.Split(rfsurl, ",")
-					if RMessage.Annotations.Rr == "true" {
-						PostToFS(Title+titleend, fstext, DoBalance(Fsurl), RMessage.Annotations.AtSomeOne, logsign)
-					} else {
-						for _, url := range Fsurl {
-							PostToFS(Title+titleend, fstext, url, RMessage.Annotations.AtSomeOne, logsign)
-						}
-					}
-				}
-				if RMessage.Annotations.Fsurl != "" {
-					Fsurl := strings.Split(RMessage.Annotations.Fsurl, ",")
-					if RMessage.Annotations.Rr == "true" {
-						PostToFS(Title+titleend, fstext, DoBalance(Fsurl), RMessage.Annotations.AtSomeOne, logsign)
-					} else {
-						for _, url := range Fsurl {
-							PostToFS(Title+titleend, fstext, url, RMessage.Annotations.AtSomeOne, logsign)
-						}
-					}
-				}
-			}
-			//发送消息到飞书应用
-			PostToFeiShuApp(Title+titleend, fstext, RMessage.Annotations.AtSomeOne, logsign)
-		}
+        if rfsurl == "" && RMessage.Annotations.Fsurl == "" {
+            url := beego.AppConfig.String("fsurl")
+            PostToFS(Title+titleend, fstext, url, RMessage.Annotations.AtSomeOne, logsign)
+        } else {
+            if rfsurl != "" {
+                Fsurl := strings.Split(rfsurl, ",")
+                if RMessage.Annotations.Rr == "true" {
+                    PostToFS(Title+titleend, fstext, DoBalance(Fsurl), RMessage.Annotations.AtSomeOne, logsign)
+                } else {
+                    for _, url := range Fsurl {
+                        PostToFS(Title+titleend, fstext, url, RMessage.Annotations.AtSomeOne, logsign)
+                    }
+                }
+            }
+            if RMessage.Annotations.Fsurl != "" {
+                Fsurl := strings.Split(RMessage.Annotations.Fsurl, ",")
+                if RMessage.Annotations.Rr == "true" {
+                    PostToFS(Title+titleend, fstext, DoBalance(Fsurl), RMessage.Annotations.AtSomeOne, logsign)
+                } else {
+                    for _, url := range Fsurl {
+                        PostToFS(Title+titleend, fstext, url, RMessage.Annotations.AtSomeOne, logsign)
+                    }
+                }
+            }
+        }
+        //发送消息到飞书应用
+        PostToFeiShuApp(Title+titleend, fstext, RMessage.Annotations.AtSomeOne, logsign)
+// 		}
 		//发送消息到Email
 		if remail == "" && RMessage.Annotations.Email == "" {
 			Emails := beego.AppConfig.String("Default_emails")
