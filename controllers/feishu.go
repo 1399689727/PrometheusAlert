@@ -27,6 +27,10 @@ func PostToFS(title, text, Fsurl, userEmail, logsign string) string {
 		return "飞书接口未配置未开启状态,请先配置open-feishu为1"
 	}
 	RTstring := ""
+	// 写死warning的信息不告警
+	if strings.Contains(text, "warning") {
+		return RTstring
+	}
 	if strings.Contains(Fsurl, "/v2/") {
 		RTstring = PostToFeiShuv2(title, text, Fsurl, userEmail, logsign)
 	} else {
