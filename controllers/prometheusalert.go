@@ -162,7 +162,7 @@ func (c *PrometheusAlertController) PrometheusAlert() {
 			PrometheusAlertTpl = Tpl
 		}
 	}
-
+	logs.Info("p_alertmanager_json:", p_alertmanager_json)
 	var message string
 	if pMsg.Type != "" && PrometheusAlertTpl != nil {
 		//判断是否是来自 Prometheus的告警
