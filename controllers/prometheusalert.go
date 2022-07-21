@@ -175,7 +175,7 @@ func (c *PrometheusAlertController) PrometheusAlert() {
 			}
 			Alerts_Value, _ := p_alertmanager_json["alerts"].([]interface{})
 			Labes_Value, _ := p_alertmanager_json["commonLabels"].(map[string]interface{})
-			logs.Info("Labes_Value:",Labes_Value)
+			logs.Info("Labes_Value:",Labes_Value["level"])
 			//拆分告警消息
 			for _, AlertValue := range Alerts_Value {
 				p_alertmanager_json["alerts"] = Alerts_Value[0:0]

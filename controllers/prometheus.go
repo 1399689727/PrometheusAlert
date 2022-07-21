@@ -4,12 +4,12 @@ import (
 	"PrometheusAlert/models"
 	"PrometheusAlert/models/elastic"
 	"encoding/json"
+	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/logs"
 	"sort"
 	"strconv"
 	"strings"
 	"time"
-	"github.com/astaxie/beego"
-	"github.com/astaxie/beego/logs"
 )
 
 
@@ -105,7 +105,7 @@ func SendMessageR(message Prometheus, rwxurl, rddurl, rfsurl, rphone, remail, rg
 	Logourl := beego.AppConfig.String("logourl")
 	Rlogourl := beego.AppConfig.String("rlogourl")
 	Messagelevel, _ := beego.AppConfig.Int("messagelevel")
-    // 	Feishulevel, _ := beego.AppConfig.Int("feishulevel")
+    Feishulevel, _ := beego.AppConfig.Int("feishulevel")
 	PhoneCalllevel, _ := beego.AppConfig.Int("phonecalllevel")
 	PhoneCallResolved, _ := beego.AppConfig.Int("phonecallresolved")
 	PCstTime, _ := beego.AppConfig.Int("prometheus_cst_time")
@@ -230,7 +230,8 @@ func SendMessageR(message Prometheus, rwxurl, rddurl, rfsurl, rphone, remail, rg
 				}
 			}
 		}
-// 		logs.Info("nLevel:",nLevel," Feishulevel:", Feishulevel)
+
+		logs.Info("nLevel:",nLevel," Feishulevel:", Feishulevel)
 // 		if nLevel >= Feishulevel {
 			//发送消息到飞书
         if rfsurl == "" && RMessage.Annotations.Fsurl == "" {
