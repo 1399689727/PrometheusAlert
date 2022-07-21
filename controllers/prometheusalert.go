@@ -183,6 +183,7 @@ func (c *PrometheusAlertController) PrometheusAlert() {
 				go SetRecord(AlertValue)
 				//提取 prometheus 告警消息中的 label，用于和告警路由比对
 				xalert := AlertValue.(map[string]interface{})
+				logs.Info("xalert", xalert)
 				//路由处理,可能存在多个路由都匹配成功，所以这里返回的是个列表sMsg
 				Return_pMsgs := AlertRouterSet(xalert, pMsg, PrometheusAlertTpl.Tpl)
 				for _, Return_pMsg := range Return_pMsgs {
